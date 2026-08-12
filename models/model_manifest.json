@@ -1,0 +1,117 @@
+{
+  "model_name": "RAW InceptionTime-SE five-fold ensemble",
+  "version": "raw-inceptiontime-se-nested-v1",
+  "task": "MI_vs_strict_NORM",
+  "input_shape": [
+    1000,
+    12
+  ],
+  "sampling_rate_hz": 100,
+  "leads": [
+    "I",
+    "II",
+    "III",
+    "aVR",
+    "aVL",
+    "aVF",
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6"
+  ],
+  "threshold": 0.72,
+  "files": [
+    {
+      "name": "nested_gpu_inceptiontime_se_outer1.keras",
+      "sha256": "8874228ec891b12caa0cf8f525448d9e4e6513426aab7fdbd06f7d07fda891e4",
+      "size_bytes": 6380318,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/02_MODELS/inceptiontime_se_nested_gpu_final/nested_gpu_inceptiontime_se_outer1.keras"
+    },
+    {
+      "name": "nested_gpu_inceptiontime_se_outer2.keras",
+      "sha256": "ee456bf840dbeb16cb0413339abece1ceb33783484281cd03b5dca6a147aa87d",
+      "size_bytes": 6380318,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/02_MODELS/inceptiontime_se_nested_gpu_final/nested_gpu_inceptiontime_se_outer2.keras"
+    },
+    {
+      "name": "nested_gpu_inceptiontime_se_outer3.keras",
+      "sha256": "06db8e381e1a533d2e1cabef1a033b580def7f4e776a05f943d13a7f0973b559",
+      "size_bytes": 6380318,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/02_MODELS/inceptiontime_se_nested_gpu_final/nested_gpu_inceptiontime_se_outer3.keras"
+    },
+    {
+      "name": "nested_gpu_inceptiontime_se_outer4.keras",
+      "sha256": "75bcb6991380f6f841b1b16316084ad527a59d81d3fe5f5e2a0d8195ba304a8b",
+      "size_bytes": 6380318,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/02_MODELS/inceptiontime_se_nested_gpu_final/nested_gpu_inceptiontime_se_outer4.keras"
+    },
+    {
+      "name": "nested_gpu_inceptiontime_se_outer5.keras",
+      "sha256": "27346083a1e8fef6a9ae8855492671fdbac34c44a00f2a5c26272388877a134e",
+      "size_bytes": 6380318,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/02_MODELS/inceptiontime_se_nested_gpu_final/nested_gpu_inceptiontime_se_outer5.keras"
+    },
+    {
+      "name": "outer1_mean.npy",
+      "sha256": "a1c278e73aaa5ca6c7cff9751da490339632c522783820b3671b36994bd14b1a",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer1_mean.npy"
+    },
+    {
+      "name": "outer1_std.npy",
+      "sha256": "b745211d488df51474c0a37b0e498c922f4e585b04187bd0e7f7fe983de676b8",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer1_std.npy"
+    },
+    {
+      "name": "outer2_mean.npy",
+      "sha256": "c493d86a2e4da15be015b0bed3d654d08d3426addf0a454826e3d2cd6dad403e",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer2_mean.npy"
+    },
+    {
+      "name": "outer2_std.npy",
+      "sha256": "4026c42c20b3cc5573e51ae2cf56ed142aeea4c6dbe1cd5aff64c185a229681d",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer2_std.npy"
+    },
+    {
+      "name": "outer3_mean.npy",
+      "sha256": "d4c984aeae0a465132520f63e064fc8c755c7da3b917760220f8bb50c09274cb",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer3_mean.npy"
+    },
+    {
+      "name": "outer3_std.npy",
+      "sha256": "f1eeaa8c619bedb4cb8d812d94e61c3147cd8431ece958fe1908f20a7bdb2e4d",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer3_std.npy"
+    },
+    {
+      "name": "outer4_mean.npy",
+      "sha256": "b232ceaab457547c6236197d86d78ad5a5d83d8b7092fc6f956e318125e0f552",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer4_mean.npy"
+    },
+    {
+      "name": "outer4_std.npy",
+      "sha256": "0a542c04e018b921cd11e90aa8bc057f7d8fc0da7f873e49934ad1276fec8db1",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer4_std.npy"
+    },
+    {
+      "name": "outer5_mean.npy",
+      "sha256": "4162df90fdcceaa0da5a151fe655ff723ba3907b96a9860f05e6e9e937c48c37",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer5_mean.npy"
+    },
+    {
+      "name": "outer5_std.npy",
+      "sha256": "c28f38a80b782c1ec920f8e92e708852ad88819e2febb873f9a99d3f80af28d5",
+      "size_bytes": 176,
+      "source_path": "/content/drive/MyDrive/ECG_MI_Q1_PROJECT/03_RESULTS/scalers_nested_gpu_final/outer5_std.npy"
+    }
+  ]
+}
