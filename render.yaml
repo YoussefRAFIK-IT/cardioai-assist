@@ -2,7 +2,7 @@ services:
   - type: web
     name: cardioai-assist
     runtime: docker
-    plan: standard
+    plan: free
     region: frankfurt
     dockerfilePath: ./Dockerfile
     dockerContext: .
@@ -52,7 +52,7 @@ services:
 
 databases:
   - name: cardioai-db
-    plan: basic-256mb
+    plan: free
     region: frankfurt
     databaseName: cardioai
     user: cardioai
