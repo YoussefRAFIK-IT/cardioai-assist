@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Tableau de bord - CardioAI Assist{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4"><div><h1 class="h2">Tableau de bord</h1><p class="text-muted mb-0">Suivi du prototype d'analyse ECG.</p></div><a class="btn btn-primary" href="{{ url_for('main.analyze') }}">Nouvelle analyse</a></div>
+{% if model_status.demo_mode_configured %}
+<div class="alert alert-warning"><strong>Mode synthétique explicitement activé.</strong> Il sert uniquement au test d'interface et ne doit pas être utilisé pour les résultats du PFE.</div>
+{% elif model_status.real_bundle_ready %}
+<div class="alert alert-success"><strong>Pipeline réel prêt.</strong> Ensemble RAW InceptionTime-SE de {{ model_status.model_count }} modèles, seuil verrouillé {{ model_status.threshold }}, empreinte <code>{{ model_status.manifest_fingerprint }}</code>.</div>
+{% else %}
+<div class="alert alert-danger"><strong>Pipeline réel indisponible.</strong> L'inférence est bloquée jusqu'à correction du bundle.<ul class="mb-0">{% for e in model_status.bundle_errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+{% endif %}
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="metric-card"><div class="metric-label">Analyses</div><div class="metric-value">{{ total }}</div></div></div>
+  <div class="col-md-4"><div class="metric-card"><div class="metric-label">Prédictions MI</div><div class="metric-value">{{ positives }}</div></div></div>
+  <div class="col-md-4"><div class="metric-card"><div class="metric-label">Probabilité moyenne</div><div class="metric-value">{{ '%.1f'|format(avg_prob*100) }} %</div></div></div>
+</div>
+<div class="card"><div class="card-header fw-bold">Dernières analyses</div><div class="table-responsive"><table class="table table-hover mb-0"><thead><tr><th>Date</th><th>Fichier</th><th>Mode</th><th>Probabilité</th><th>Classe</th><th></th></tr></thead><tbody>
+{% for p in recent %}<tr><td>{{ p.created_at.strftime('%d/%m/%Y %H:%M') }}</td><td>{{ p.ecg_record.original_filename }}</td><td>{{ p.inference_mode }}</td><td>{{ '%.2f'|format(p.probability) }}</td><td><span class="badge {{ 'text-bg-danger' if p.predicted_class else 'text-bg-success' }}">{{ 'MI' if p.predicted_class else 'NORM' }}</span></td><td><a href="{{ url_for('main.result', prediction_id=p.id) }}">Voir</a></td></tr>{% else %}<tr><td colspan="6" class="text-center text-muted py-4">Aucune analyse.</td></tr>{% endfor %}
+</tbody></table></div></div>
+{% endblock %}

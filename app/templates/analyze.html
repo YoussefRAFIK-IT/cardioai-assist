@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Analyser un ECG - CardioAI Assist{% endblock %}
+{% block content %}
+<h1 class="h2">Analyser un ECG</h1>
+<p class="lead">Chargez un fichier CSV, JSON ou NPY contenant les 12 dérivations standards.</p>
+<div class="row g-4">
+  <div class="col-lg-7"><div class="card shadow-sm"><div class="card-body"><form method="post" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="mb-3"><label for="ecg_file" class="form-label fw-bold">Fichier ECG</label><input class="form-control" type="file" id="ecg_file" name="ecg_file" accept=".csv,.json,.npy,.txt" required><div class="form-text">Maximum 8 Mo. Le fichier brut n'est pas conservé.</div></div>
+    <div class="mb-3"><label for="sampling_rate" class="form-label fw-bold">Fréquence originale (Hz)</label><input class="form-control" type="number" id="sampling_rate" name="sampling_rate" value="100" min="25" max="5000" required><div class="form-text">Pour les fichiers JSON, la fréquence intégrée au fichier est prioritaire.</div></div>
+    <div class="form-check mb-3"><input class="form-check-input" type="checkbox" value="yes" id="compute_xai" name="compute_xai"><label class="form-check-label" for="compute_xai">Calculer l'explicabilité par occlusion (plus lent)</label></div>
+    <button class="btn btn-primary" type="submit">Lancer l'analyse</button>
+  </form></div></div></div>
+  <div class="col-lg-5">
+    <div class="card"><div class="card-header fw-bold">Format validé</div><div class="card-body"><p>CSV/TXT : les 12 colonnes doivent être nommées :</p><code>{{ leads|join(', ') }}</code><hr><p class="small mb-0">Le signal doit contenir au moins 10 secondes après conversion à 100 Hz. Les ECG longs sont analysés sur cinq fenêtres : début, 25 %, centre, 75 % et fin.</p></div></div>
+    <div class="card mt-3"><div class="card-header fw-bold">Exemples externes PTBDB</div><div class="list-group list-group-flush">{% for label, filename in samples %}<a class="list-group-item list-group-item-action" href="{{ url_for('main.sample_file', filename=filename) }}">{{ label }}</a>{% endfor %}</div></div>
+  </div>
+</div>
+{% endblock %}

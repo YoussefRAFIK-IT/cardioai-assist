@@ -1,0 +1,15 @@
+{
+  "project": "CardioAI Assist",
+  "release": "V1 Final Candidate",
+  "generated_from": "CardioAI_Assist_PFE_Final.zip",
+  "validated_model_bundle": "CARDIOAI_MODEL_BUNDLE.zip",
+  "validated_external_evidence": "CARDIOAI_STEP2B_DEPLOYMENT_PIPELINE_PTBDB_EVIDENCE.zip",
+  "deployment_mode": "REAL_RAW_ENSEMBLE",
+  "locked_threshold": 0.72,
+  "model_count": 5,
+  "input_shape": [
+    1000,
+    12
+  ],
+  "sampling_rate_hz": 100
+}

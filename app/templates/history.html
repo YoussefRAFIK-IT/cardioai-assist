@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Historique - CardioAI Assist{% endblock %}
+{% block content %}
+<h1 class="h2">Historique des analyses</h1>
+<div class="card"><div class="table-responsive"><table class="table table-striped mb-0"><thead><tr><th>Date</th><th>Référence</th><th>Fichier</th><th>Mode</th><th>Probabilité</th><th>Classe</th><th></th></tr></thead><tbody>{% for p in pagination.items %}<tr><td>{{ p.created_at.strftime('%d/%m/%Y %H:%M') }}</td><td class="small">{{ p.ecg_record.public_ref[:8] }}</td><td>{{ p.ecg_record.original_filename }}</td><td>{{ p.inference_mode }}</td><td>{{ '%.3f'|format(p.probability) }}</td><td>{{ 'MI' if p.predicted_class else 'NORM' }}</td><td><a href="{{ url_for('main.result', prediction_id=p.id) }}">Ouvrir</a></td></tr>{% else %}<tr><td colspan="7" class="text-center py-4">Aucune donnée.</td></tr>{% endfor %}</tbody></table></div></div>
+<nav class="mt-3" aria-label="Pagination"><ul class="pagination"><li class="page-item {{ 'disabled' if not pagination.has_prev }}"><a class="page-link" href="{{ url_for('main.history', page=pagination.prev_num) if pagination.has_prev else '#' }}">Précédent</a></li><li class="page-item disabled"><span class="page-link">Page {{ pagination.page }} / {{ pagination.pages or 1 }}</span></li><li class="page-item {{ 'disabled' if not pagination.has_next }}"><a class="page-link" href="{{ url_for('main.history', page=pagination.next_num) if pagination.has_next else '#' }}">Suivant</a></li></ul></nav>
+{% endblock %}

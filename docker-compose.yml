@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: cardioai
+      POSTGRES_USER: cardioai
+      POSTGRES_PASSWORD: cardioai_local_password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cardioai -d cardioai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://cardioai:cardioai_local_password@db:5432/cardioai
+      MODEL_DIR: /app/models
+      PORT: 5000
+    volumes:
+      - ./models:/app/models:ro
+      - ./sample_data:/app/sample_data:ro
+
+volumes:
+  postgres_data:

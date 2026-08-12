@@ -1,0 +1,15 @@
+:root { --cardio-blue: #0b5d7a; --cardio-dark: #17324d; --cardio-bg: #f4f7fa; }
+body { background: var(--cardio-bg); color: #18212b; }
+.bg-primary { background-color: var(--cardio-dark) !important; }
+.prototype-banner { background: #fff3cd; color: #523f00; border-bottom: 1px solid #e5cc75; padding: .55rem 1rem; text-align: center; font-weight: 600; }
+.metric-card { background: white; border-radius: 12px; border: 1px solid #dce5eb; padding: 1.25rem; height: 100%; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.metric-label { color: #5b6b78; font-size: .9rem; }
+.metric-value { color: var(--cardio-dark); font-size: 1.8rem; font-weight: 700; }
+.card { border: 1px solid #dce5eb; border-radius: 12px; }
+.plot-container { overflow-x: auto; }
+.skip-link { position: absolute; left: -9999px; top: 0; background: #000; color: #fff; padding: .5rem; z-index: 9999; }
+.skip-link:focus { left: .5rem; top: .5rem; }
+:focus-visible { outline: 3px solid #f0a500; outline-offset: 2px; }
+code { white-space: normal; }
+.table th { color: #33485c; }
+.alert ul { margin-top: .5rem; }

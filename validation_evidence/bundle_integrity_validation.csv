@@ -1,0 +1,16 @@
+file,exists,sha256_match,size_match,valid
+nested_gpu_inceptiontime_se_outer1.keras,True,True,True,True
+nested_gpu_inceptiontime_se_outer2.keras,True,True,True,True
+nested_gpu_inceptiontime_se_outer3.keras,True,True,True,True
+nested_gpu_inceptiontime_se_outer4.keras,True,True,True,True
+nested_gpu_inceptiontime_se_outer5.keras,True,True,True,True
+outer1_mean.npy,True,True,True,True
+outer1_std.npy,True,True,True,True
+outer2_mean.npy,True,True,True,True
+outer2_std.npy,True,True,True,True
+outer3_mean.npy,True,True,True,True
+outer3_std.npy,True,True,True,True
+outer4_mean.npy,True,True,True,True
+outer4_std.npy,True,True,True,True
+outer5_mean.npy,True,True,True,True
+outer5_std.npy,True,True,True,True

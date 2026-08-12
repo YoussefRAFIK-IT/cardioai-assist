@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Administration - CardioAI Assist{% endblock %}
+{% block content %}
+<h1 class="h2 mb-4">Back-office administrateur</h1>
+<div class="row g-3 mb-4">
+  <div class="col-md-3"><div class="metric-card"><div class="metric-label">Utilisateurs</div><div class="metric-value">{{ stats.users }}</div></div></div>
+  <div class="col-md-3"><div class="metric-card"><div class="metric-label">ECG tracés</div><div class="metric-value">{{ stats.ecg_records }}</div></div></div>
+  <div class="col-md-3"><div class="metric-card"><div class="metric-label">Prédictions</div><div class="metric-value">{{ stats.predictions }}</div></div></div>
+  <div class="col-md-3"><div class="metric-card"><div class="metric-label">Logs d'audit</div><div class="metric-value">{{ stats.audit_logs }}</div></div></div>
+</div>
+<div class="card mb-4">
+  <div class="card-header fw-bold">État du modèle</div>
+  <div class="card-body">
+    <dl class="row mb-0">
+      <dt class="col-sm-4">Mode configuré</dt><dd class="col-sm-8">{{ model_status.configured_mode }}</dd>
+      <dt class="col-sm-4">Bundle réel valide</dt><dd class="col-sm-8">{{ 'Oui' if model_status.real_bundle_ready else 'Non' }}</dd>
+      <dt class="col-sm-4">Modèles</dt><dd class="col-sm-8">{{ model_status.model_count }}</dd>
+      <dt class="col-sm-4">Version</dt><dd class="col-sm-8">{{ model_status.version }}</dd>
+      <dt class="col-sm-4">Seuil verrouillé</dt><dd class="col-sm-8">{{ model_status.threshold }}</dd>
+      <dt class="col-sm-4">Empreinte manifeste</dt><dd class="col-sm-8"><code>{{ model_status.manifest_fingerprint }}</code></dd>
+    </dl>
+    {% if model_status.bundle_errors %}<div class="alert alert-danger mt-3"><ul class="mb-0">{% for e in model_status.bundle_errors %}<li>{{ e }}</li>{% endfor %}</ul></div>{% endif %}
+  </div>
+</div>
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card"><div class="card-header fw-bold">Utilisateurs</div><div class="table-responsive"><table class="table mb-0"><thead><tr><th>E-mail</th><th>Rôle</th><th>Actif</th><th></th></tr></thead><tbody>
+    {% for u in users %}<tr><td>{{ u.email }}</td><td>{{ u.role }}</td><td>{{ 'Oui' if u.active else 'Non' }}</td><td>{% if u.id != current_user.id %}<form method="post" action="{{ url_for('admin.toggle_user', user_id=u.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline-secondary" type="submit">{{ 'Désactiver' if u.active else 'Activer' }}</button></form>{% endif %}</td></tr>{% endfor %}
+    </tbody></table></div></div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card"><div class="card-header fw-bold">Créer un utilisateur</div><div class="card-body"><form method="post" action="{{ url_for('admin.create_user') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><div class="mb-3"><label class="form-label">E-mail</label><input class="form-control" type="email" name="email" required></div><div class="mb-3"><label class="form-label">Mot de passe</label><input class="form-control" type="password" name="password" minlength="12" required></div><div class="mb-3"><label class="form-label">Rôle</label><select class="form-select" name="role"><option value="analyst">Analyste</option><option value="admin">Administrateur</option></select></div><button class="btn btn-primary">Créer</button></form></div></div>
+  </div>
+</div>
+<div class="card mt-4"><div class="card-header fw-bold">Derniers événements d'audit</div><div class="table-responsive"><table class="table table-sm mb-0"><thead><tr><th>Date</th><th>Action</th><th>Ressource</th><th>ID</th></tr></thead><tbody>{% for a in audits %}<tr><td>{{ a.created_at.strftime('%d/%m/%Y %H:%M') }}</td><td>{{ a.action }}</td><td>{{ a.resource_type or '-' }}</td><td>{{ a.resource_id or '-' }}</td></tr>{% else %}<tr><td colspan="4">Aucun log.</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}

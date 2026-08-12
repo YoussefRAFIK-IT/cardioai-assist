@@ -1,0 +1,5 @@
+file_base_name,usage,dataset,record_name,patient_id,true_label,true_class,window_probability_five_model_ensemble,threshold,predicted_class,correct,start_seconds_in_original_record,max_abs_amplitude,mean_abs_amplitude
+ptbdb_demo_healthy_correct,public_demo,PTBDB external,s0467_re,patient239,0,Healthy,0.14606083929538727,0.72,0,True,55.01,1.8233287334442139,0.21405668556690216
+ptbdb_demo_mi_correct,public_demo,PTBDB external,s0094lre,patient024,1,MI,0.9002150297164917,0.72,1,True,105.2,0.9213226437568665,0.13436877727508545
+ptbdb_demo_borderline_correct,public_demo,PTBDB external,s0045lre,patient013,1,MI,0.7200249433517456,0.72,1,True,0.0,1.5859228372573853,0.2383304238319397
+ptbdb_error_case_for_limit_analysis,report_only,PTBDB external,s0149lre,patient022,1,MI,0.7172558307647705,0.72,0,False,26.3,1.109275221824646,0.17827661335468292
