@@ -66,7 +66,8 @@ class Config:
     REMEMBER_COOKIE_SAMESITE = "Lax"
 
     PUBLIC_DEMO_NOTICE = (
-        "Prototype de recherche et de PFE. Il n'est pas un dispositif médical et ne doit pas être utilisé seul "
-        "pour établir un diagnostic ou décider d'une prise en charge. Le seuil 0,72 est un seuil interne verrouillé "
-        "dont la sensibilité a diminué lors de l'évaluation externe PTBDB."
-    )
+    "CardioAI Assist — plateforme Data & IA fonctionnelle et déployée pour l’analyse assistée d’ECG 12 dérivations, "
+    "intégrant validation patient-wise, validation externe, explicabilité et traçabilité. "
+    "Les résultats sont destinés à l’évaluation méthodologique et à l’aide à l’analyse ; "
+    "ils ne remplacent pas un diagnostic médical."
+)
